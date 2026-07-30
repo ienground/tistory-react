@@ -1,12 +1,12 @@
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { expect, describe, test } from 'vitest';
-import fs from '@tistory-react/shared/fs-extra';
+import fs from '@ienlab/tistory-react-shared/fs-extra';
 
 import { bundleXml, renderHtml } from './build';
 import { normalizePath } from './utils';
 import { OUTPUT_DIR } from './constants';
-import type { UserConfig } from '@tistory-react/shared';
+import type { UserConfig } from '@ienlab/tistory-react-shared';
 
 describe('bundleXml', async () => {
   const testDir = normalizePath(join(__dirname, 'fixtures'));

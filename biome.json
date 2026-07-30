@@ -11,7 +11,7 @@
       "*.d.ts",
       "dist-*/**/*",
       "compiled/**/*",
-      "create-tistory-react/template/tistory-react.config.ts",
+      "@ienlab/@ienlab/create-tistory-react/template/tistory-react.config.ts",
       "examples/**/*"
     ],
     "include": [

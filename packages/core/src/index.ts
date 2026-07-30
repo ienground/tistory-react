@@ -1,2 +1,2 @@
 export * from './node';
-export * from '@tistory-react/shared';
+export * from '@ienlab/tistory-react-shared';

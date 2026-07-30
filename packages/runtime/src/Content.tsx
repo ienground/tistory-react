@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { removeLeadingSlash } from '@tistory-react/shared';
+import { removeLeadingSlash } from '@ienlab/tistory-react-shared';
 import { createElement } from 'react';
 
 const { routes } = require('virtual-routes') as typeof import('virtual-routes');

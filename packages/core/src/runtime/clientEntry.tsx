@@ -1,10 +1,10 @@
-import { isProduction } from '@tistory-react/shared';
-import { BrowserRouter } from '@tistory-react/runtime';
+import { isProduction } from '@ienlab/tistory-react-shared';
+import { BrowserRouter } from '@ienlab/tistory-react-runtime';
 import { App } from './App';
-import { DevTools } from '@tistory-react/devtool';
+import { DevTools } from '@ienlab/tistory-react-devtool';
 import { useRemoveTistoryTags } from 'utils';
 
-import '@tistory-react/devtool/css';
+import '@ienlab/tistory-react-devtool/css';
 
 export async function renderInBrowser() {
   const container = document.getElementById('root')!;

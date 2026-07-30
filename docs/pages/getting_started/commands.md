@@ -6,7 +6,7 @@ Tistory React에서는 아래 명령어를 사용할 수 있습니다.
 개발 서버를 시작합니다.
 
 ```
-tistory-react dev
+@ienlab/tistory-react dev
 ```
 
 |Option|Description|Default value|
@@ -18,7 +18,7 @@ tistory-react dev
 스킨 등록에 필요한 번들을 생성합니다.
 
 ```
-tistory-react build [root]
+@ienlab/tistory-react build [root]
 ```
 
 |Option|Description|Default value|

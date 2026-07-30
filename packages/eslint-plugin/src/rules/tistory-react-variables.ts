@@ -3,7 +3,7 @@ import type { Rule } from 'eslint';
 import elementType from 'jsx-ast-utils/elementType';
 // import type ESTree from 'estree-jsx';
 import { report } from '../utils/report';
-import * as Theme from '@tistory-react/component/Article';
+import * as Theme from '@ienlab/tistory-react-component/Article';
 import { tistoryComponentNames } from '../constants';
 
 const messages = {
@@ -50,7 +50,7 @@ export const tistoryReactVariablesRule: Rule.RuleModule = {
       },
       ImportDeclaration(node: any) {
         // console.log(node);
-        if (node.source && node.source.value === 'tistory-react/theme') {
+        if (node.source && node.source.value === '@ienlab/tistory-react/theme') {
           node.specifiers.forEach(spec => {
             if (
               spec.imported

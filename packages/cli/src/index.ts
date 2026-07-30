@@ -3,9 +3,9 @@ import path from 'node:path';
 import { cac } from 'cac';
 import chokidar from 'chokidar';
 import chalk from 'chalk';
-import { logger } from '@tistory-react/shared/logger';
+import { logger } from '@ienlab/tistory-react-shared/logger';
 import { loadConfigFile } from './config/loadConfigFile';
-import { dev, build } from '@tistory-react/core';
+import { dev, build } from '@ienlab/tistory-react-core';
 
 const CONFIG_FILES = ['tistory-react.config.ts', 'tistory-react.config.js'];
 

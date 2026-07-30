@@ -1,5 +1,5 @@
 {
-  "name": "@tistory-react/runtime",
+  "name": "@ienlab/tistory-react-runtime",
   "version": "0.0.10-alpha.0",
   "bugs": "https://github.com/eunbae0/tistory-react/issues",
   "repository": {
@@ -30,7 +30,7 @@
     "node": ">=14.17.6"
   },
   "dependencies": {
-    "@tistory-react/shared": "^0.0.10-alpha.0",
+    "@ienlab/tistory-react-shared": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1"

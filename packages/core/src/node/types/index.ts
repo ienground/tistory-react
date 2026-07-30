@@ -1,7 +1,7 @@
 import type {
   TistorySkinConfig,
   TistorySkinInformationConfig,
-} from '@tistory-react/shared';
+} from '@ienlab/tistory-react-shared';
 import type { ElementCompact } from 'xml-js';
 
 export interface TistorySkinInfo extends Omit<ElementCompact, '_declaration'> {

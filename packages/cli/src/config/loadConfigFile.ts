@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import type { UserConfig } from '@tistory-react/core';
-import { logger } from '@tistory-react/shared/logger';
+import type { UserConfig } from '@ienlab/tistory-react-core';
+import { logger } from '@ienlab/tistory-react-shared/logger';
 import { DEFAULT_CONFIG_NAME, DEFAULT_EXTENSIONS } from '@/constants';
 
 const findConfig = (basePath: string): string | undefined => {

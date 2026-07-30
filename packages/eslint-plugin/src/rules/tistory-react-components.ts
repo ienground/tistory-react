@@ -39,7 +39,7 @@ export const tistoryReactComponentsRule: Rule.RuleModule = {
     const importTistoryComponents = new Set<string>();
     /**
      * @example ```
-     * import {Article as AliasArticle} from 'tistory-react/component/Article'
+     * import {Article as AliasArticle} from '@ienlab/tistory-react/component/Article'
      * // Map(['AliasArticle', 'Article'])
      * ```
      */

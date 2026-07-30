@@ -1,4 +1,4 @@
-import { Article, ARTICLE_TITLE, ARTICLE_CATEGORY, ARTICLE_DATE, ARTICLE_DESCRIPTION } from 'tistory-react/component/Article';
+import { Article, ARTICLE_TITLE, ARTICLE_CATEGORY, ARTICLE_DATE, ARTICLE_DESCRIPTION } from '@ienlab/tistory-react/component/Article';
 
 export default function ArticleService() {
   return (

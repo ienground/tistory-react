@@ -7,7 +7,7 @@
     "preview": "tistory-react preview"
   },
   "dependencies": {
-    "tistory-react": "^0.0.14-alpha.0",
+    "@ienlab/tistory-react": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

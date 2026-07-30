@@ -1,4 +1,4 @@
-import type { UserConfig } from '@tistory-react/shared';
+import type { UserConfig } from '@ienlab/tistory-react-shared';
 import { RspackVirtualModulePlugin } from 'rspack-plugin-virtual-module';
 import type { RsbuildPlugin } from '@rsbuild/core';
 import type { RouteService } from '../route/RouteService';

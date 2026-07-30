@@ -33,7 +33,7 @@ import {
   NEXT_LINK,
   NEXT_TITLE,
   NEXT_DATE,
-} from '@tistory-react/component/Article';
+} from '@ienlab/tistory-react-component/Article';
 
 import type { ConvertedVariables } from 'types';
 import {

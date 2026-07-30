@@ -6,7 +6,7 @@ import {
   type TistorySkinAuthorConfig,
   type TistorySkinDefaultConfig,
   type TistorySkinInformationConfig,
-} from '@tistory-react/shared';
+} from '@ienlab/tistory-react-shared';
 
 export const isProduction = () => process.env.NODE_ENV === 'production';
 

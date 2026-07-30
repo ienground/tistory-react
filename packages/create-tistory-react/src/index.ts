@@ -11,7 +11,7 @@ import {
   cancelPrompt,
 } from './utils';
 
-const cli = cac('create-tistory-react').help();
+const cli = cac('@ienlab/@ienlab/create-tistory-react').help();
 
 cli.command('', 'Create a new tistory-react project').action(async () => {
   const siteOptions: PromptObject[] = [

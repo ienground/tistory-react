@@ -15,7 +15,7 @@ const ruleTester = new RuleTester({
 ruleTester.run('tistory-react-variables', tistoryReactVariablesRule, {
   valid: [
     {
-      code: `import {Article as Ar, asdf} from 'tistory-react/theme'
+      code: `import {Article as Ar, asdf} from '@ienlab/tistory-react/theme'
           const Components = () => {
             return (
               <Article>
@@ -31,7 +31,7 @@ ruleTester.run('tistory-react-variables', tistoryReactVariablesRule, {
   ],
   invalid: [
     {
-      code: `import {Article} from 'tistory-react/theme'
+      code: `import {Article} from '@ienlab/tistory-react/theme'
           const Components = () => {
             return (
               <Article>

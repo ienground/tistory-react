@@ -1,5 +1,5 @@
 {
-	"name": "tistory-react",
+	"name": "@ienlab/tistory-react",
 	"private": false,
 	"workspaces": [
 		"packages/*",

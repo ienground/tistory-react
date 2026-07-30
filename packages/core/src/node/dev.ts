@@ -1,4 +1,4 @@
-import type { UserConfig } from '@tistory-react/shared';
+import type { UserConfig } from '@ienlab/tistory-react-shared';
 import type { RsbuildConfig } from '@rsbuild/core';
 import { initRsbuild } from './initRsbuild';
 

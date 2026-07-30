@@ -1,4 +1,4 @@
-import type { UserConfig } from '@tistory-react/shared';
+import type { UserConfig } from '@ienlab/tistory-react-shared';
 import { RouteService } from './RouteService';
 
 interface InitOptions {

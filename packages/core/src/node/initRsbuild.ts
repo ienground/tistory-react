@@ -4,8 +4,8 @@ import {
   removeLeadingSlash,
   TISTORY_REACT_TEMP_DIR,
   removeTrailingSlash,
-} from '@tistory-react/shared';
-import fs from '@tistory-react/shared/fs-extra';
+} from '@ienlab/tistory-react-shared';
+import fs from '@ienlab/tistory-react-shared/fs-extra';
 import type {
   RsbuildInstance,
   RsbuildConfig,
@@ -141,7 +141,7 @@ async function createInternalBuildConfig(
     },
     source: {
       alias: {
-        '@tistory-react/core': PACKAGE_ROOT,
+        '@ienlab/tistory-react-core': PACKAGE_ROOT,
       },
       include: [
         PACKAGE_ROOT,

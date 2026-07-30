@@ -15,10 +15,10 @@
     "directory": "examples/ts"
   },
   "dependencies": {
-    "@tistory-react/eslint-plugin-tistory": "^0.0.13-alpha.0",
+    "@ienlab/tistory-react-eslint-plugin": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tistory-react": "^0.0.14-alpha.0"
+    "@ienlab/tistory-react": "*"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",

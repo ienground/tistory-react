@@ -1,6 +1,6 @@
 <div align="center">
 
-  # tistory-react 
+  # @ienlab/tistory-react 
 
   A fast tistory skin framework with React.js.
 </div>
@@ -16,9 +16,9 @@
 
 1. Create via CLI
 ```bash
-$ npm create tistory-react@latest # npm
-$ yarn create tistory-react@latest # yarn
-$ pnpm create tistory-react@latest # pnpm
+$ npm create @ienlab/tistory-react@latest # npm
+$ yarn create @ienlab/tistory-react@latest # yarn
+$ pnpm create @ienlab/tistory-react@latest # pnpm
 ```
 
 2. Start Dev Server
@@ -32,4 +32,4 @@ $ npm run build
 ```
 
 ## License
-Tistory-react is licensed under the [MIT License](https://github.com/eunbae0/tistory-react/blob/main/LICENSE).
+Tistory-react is licensed under the [MIT License](https://github.com/eunbae0/@ienlab/tistory-react/blob/main/LICENSE).

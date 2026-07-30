@@ -1,5 +1,5 @@
 import path from 'node:path';
-import type { RouteMeta } from '@tistory-react/shared';
+import type { RouteMeta } from '@ienlab/tistory-react-shared';
 import { normalizePath, isTistoryRouteFile, extractPageName } from '../utils';
 
 export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx'];
@@ -21,7 +21,7 @@ export class RouteService {
   }
 
   async init() {
-    const globby = (await import('@tistory-react/shared/globby')).globby;
+    const globby = (await import('@ienlab/tistory-react-shared/globby')).globby;
 
     // 1. Filter page route paths file
     const files = await globby(

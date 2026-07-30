@@ -1,7 +1,7 @@
 import path from 'node:path';
-import fs from '@tistory-react/shared/fs-extra';
+import fs from '@ienlab/tistory-react-shared/fs-extra';
 import enhancedResolve from 'enhanced-resolve';
-import { logger } from '@tistory-react/shared/logger';
+import { logger } from '@ienlab/tistory-react-shared/logger';
 import { PACKAGE_ROOT } from '../constants';
 
 const { CachedInputFileSystem, ResolverFactory } = enhancedResolve;

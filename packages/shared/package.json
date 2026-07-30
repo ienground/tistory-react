@@ -1,5 +1,5 @@
 {
-  "name": "@tistory-react/shared",
+  "name": "@ienlab/tistory-react-shared",
   "version": "0.0.10-alpha.0",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",

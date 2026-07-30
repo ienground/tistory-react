@@ -1,16 +1,17 @@
 {
-  "name": "create-tistory-react",
+  "name": "@ienlab/create-tistory-react",
   "version": "0.0.13-alpha.0",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "bin": {
-    "create-tistory-react": "./dist/index.js"
+    "create-tistory-react": "./dist/index.js",
+    "create-ienlab-tistory-react": "./dist/index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/eunbae0/tistory-react",
-    "directory": "packages/create-tistory-react"
+    "directory": "packages/@ienlab/@ienlab/create-tistory-react"
   },
   "scripts": {
     "dev": "modern build -w",

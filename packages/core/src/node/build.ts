@@ -1,9 +1,9 @@
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import chalk from '@tistory-react/shared/chalk';
-import fs from '@tistory-react/shared/fs-extra';
-import { type UserConfig, isDebugMode } from '@tistory-react/shared';
-import { logger } from '@tistory-react/shared/logger';
+import chalk from '@ienlab/tistory-react-shared/chalk';
+import fs from '@ienlab/tistory-react-shared/fs-extra';
+import { type UserConfig, isDebugMode } from '@ienlab/tistory-react-shared';
+import { logger } from '@ienlab/tistory-react-shared/logger';
 import {
   OUTPUT_DIR,
   APP_HTML_MARKER,
@@ -65,7 +65,7 @@ export async function renderHtml(
   const outputPath = config?.outDir ?? join(appDirectory, OUTPUT_DIR);
   const ssrBundlePath = join(outputPath, 'ssr', 'main.cjs');
   try {
-    const { default: fs } = await import('@tistory-react/shared/fs-extra');
+    const { default: fs } = await import('@ienlab/tistory-react-shared/fs-extra');
     const { version } = await import('../../package.json');
     // There are two cases where we will fallback to CSR:
     // 1. ssr bundle load failed
@@ -149,7 +149,7 @@ export async function bundleXml(appDirectory: string, config: UserConfig) {
   const startTime = Date.now();
   const outputPath = config?.outDir ?? join(appDirectory, OUTPUT_DIR);
   try {
-    const { default: fs } = await import('@tistory-react/shared/fs-extra');
+    const { default: fs } = await import('@ienlab/tistory-react-shared/fs-extra');
     const { js2xml } = await import('xml-js');
     // const { version, description, author } = await import('../../package.json'); user package json
     const skinInfo: TistorySkinInfo = {

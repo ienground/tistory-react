@@ -1,1 +1,1 @@
-export * from '@tistory-react/component/Sidebar';
+export * from '@ienlab/tistory-react-component/Sidebar';
