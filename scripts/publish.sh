@@ -4,6 +4,9 @@ set -e
 echo "🚀 의존성 확인 중..."
 npm install
 
+echo "📌 버전 동기화 중..."
+npm run version:sync
+
 TAG="${1:-alpha}"
 
 echo "🔨 [1/8] @ienlab/tistory-react-shared 빌드 및 배포..."

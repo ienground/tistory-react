@@ -1,32 +1,32 @@
 import path from 'node:path';
 import {
+  TISTORY_REACT_TEMP_DIR,
   type UserConfig,
   removeLeadingSlash,
-  TISTORY_REACT_TEMP_DIR,
   removeTrailingSlash,
 } from '@ienlab/tistory-react-shared';
 import fs from '@ienlab/tistory-react-shared/fs-extra';
 import type {
-  RsbuildInstance,
   RsbuildConfig,
+  RsbuildInstance,
   RsbuildPlugin,
 } from '@rsbuild/core';
+import { PLUGIN_REACT_NAME, pluginReact } from '@rsbuild/plugin-react';
 import {
-  CLIENT_ENTRY,
-  SSR_ENTRY,
-  PACKAGE_ROOT,
-  OUTPUT_DIR,
-  isProduction,
-  PUBLIC_DIR,
-  DEFAULT_TITLE,
   BUNDLE_DIR,
+  CLIENT_ENTRY,
+  DEFAULT_TITLE,
+  OUTPUT_DIR,
+  PACKAGE_ROOT,
+  PUBLIC_DIR,
+  SSR_ENTRY,
   TISTORY_DEFAULT_CSS_NAME,
+  isProduction,
 } from './constants';
+import type { RouteService } from './route/RouteService';
 import { initRouteService } from './route/init';
 import { rsbuildPluginDocVM } from './runtimeModule';
-import type { RouteService } from './route/RouteService';
 import { detectReactVersion, resolveReactAlias } from './utils';
-import { PLUGIN_REACT_NAME, pluginReact } from '@rsbuild/plugin-react';
 
 export interface MdxRsLoaderCallbackContext {
   resourcePath: string;
@@ -53,6 +53,7 @@ async function createInternalBuildConfig(
   runtimeTempDir: string,
 ): Promise<RsbuildConfig> {
   const cwd = process.cwd();
+  const base = config?.base ?? '';
   const baseOutDir = config?.outDir ?? OUTPUT_DIR;
   const csrOutDir = baseOutDir;
   const ssrOutDir = path.join(baseOutDir, 'ssr');
@@ -63,7 +64,7 @@ async function createInternalBuildConfig(
   const assetPrefix = isProduction()
     ? removeTrailingSlash(config?.builderConfig?.output?.assetPrefix ?? '.')
     : '.';
-  const reactVersion = await detectReactVersion();
+  const reactVersion = await detectReactVersion(userDocRoot);
 
   const normalizeIcon = (icon: string | undefined) => {
     if (!icon) {
@@ -79,12 +80,7 @@ async function createInternalBuildConfig(
 
   // Using latest browserslist in development to improve build performance
   const webBrowserslist = isProduction()
-    ? [
-        'chrome >= 111',
-        'edge >= 111',
-        'firefox >= 128',
-        'safari >= 16.4',
-      ]
+    ? ['chrome >= 111', 'edge >= 111', 'firefox >= 128', 'safari >= 16.4']
     : [
         'last 1 chrome version',
         'last 1 firefox version',
@@ -93,8 +89,10 @@ async function createInternalBuildConfig(
   const ssrBrowserslist = ['node >= 20.19'];
 
   const [reactCSRAlias, reactSSRAlias] = await Promise.all([
-    resolveReactAlias(reactVersion, false),
-    enableSSG ? resolveReactAlias(reactVersion, true) : Promise.resolve({}),
+    resolveReactAlias(reactVersion, false, userDocRoot),
+    enableSSG
+      ? resolveReactAlias(reactVersion, true, userDocRoot)
+      : Promise.resolve({}),
   ]);
 
   return {
@@ -113,7 +111,8 @@ async function createInternalBuildConfig(
           ? Number(process.env.PORT)
           : undefined,
       printUrls: ({ urls }) => {
-        return urls.map(url => `${url}/${removeLeadingSlash(base)}`);
+        const baseUrl = config?.base ?? '';
+        return urls.map(url => `${url}/${removeLeadingSlash(baseUrl)}`);
       },
       publicDir: {
         name: path.join(userDocRoot, PUBLIC_DIR),
@@ -149,7 +148,7 @@ async function createInternalBuildConfig(
       ],
       define: {
         'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
-        'process.env.__IS_REACT_18__': JSON.stringify(reactVersion === 18),
+        'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
         'process.env.TEST': JSON.stringify(process.env.TEST),
       },
     },
@@ -181,13 +180,17 @@ async function createInternalBuildConfig(
     },
     environments: {
       web: {
+        resolve: {
+          alias: reactCSRAlias,
+        },
         source: {
           entry: {
             index: CLIENT_ENTRY,
           },
-          alias: reactCSRAlias,
           define: {
             'process.env.__SSR__': JSON.stringify(false),
+            'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
+            'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
             'process.env.__ENABLE_VARIABLE_SWAP___': JSON.stringify(
               config.dev?.enableVariableSwap ?? true,
             ),
@@ -208,13 +211,19 @@ async function createInternalBuildConfig(
       ...(enableSSG
         ? {
             node: {
+              resolve: {
+                alias: reactSSRAlias,
+              },
               source: {
                 entry: {
                   index: SSR_ENTRY,
                 },
-                alias: reactSSRAlias,
                 define: {
                   'process.env.__SSR__': JSON.stringify(true),
+                  'process.env.__IS_REACT_18__': JSON.stringify(
+                    reactVersion >= 18,
+                  ),
+                  'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
                 },
               },
               performance: {

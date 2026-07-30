@@ -1,6 +1,6 @@
 {
   "name": "tistory-react-example-ts",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.7",
   "description": "",
   "main": "src/Layout.js",
   "type": "module",
@@ -15,24 +15,24 @@
     "directory": "examples/ts"
   },
   "dependencies": {
-    "@ienlab/tistory-react-eslint-plugin": "*",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@ienlab/tistory-react": "*"
+    "@ienlab/tistory-react-eslint-plugin": "^0.1.0-alpha.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "@ienlab/tistory-react": "^0.1.0-alpha.7"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.0",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/react": "^18.3.3",
-    "eslint": "^9.9.1",
-    "eslint-plugin-react": "^7.35.2",
-    "globals": "^15.9.0",
+    "@types/react": "^19.2.17",
+    "eslint": "^10.8.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.8.0",
     "postcss": "^8.5.25",
-    "prettier": "^3.3.3",
+    "prettier": "^3.9.6",
     "tailwindcss": "^4.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.6.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0"
   },
   "engines": {
     "node": ">=20.19.0"

@@ -1,6 +1,6 @@
 {
   "name": "@ienlab/tistory-react",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.8",
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -54,7 +54,7 @@
   "license": "ISC",
   "dependencies": {
     "@rsbuild/core": "^2.1.9",
-    "@ienlab/tistory-react-component": "^0.0.13-alpha.0",
+    "@ienlab/tistory-react-component": "*",
     "@ienlab/tistory-react-core": "*",
     "@ienlab/tistory-react-devtool": "*",
     "@ienlab/tistory-react-runtime": "*",

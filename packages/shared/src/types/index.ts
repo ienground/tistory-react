@@ -3,6 +3,7 @@ import type { TistorySkinConfig } from './tistory';
 
 export interface Route {
   pageName: string;
+  component?: React.ComponentType<any>;
   element: React.ReactElement;
   filePath: string;
 }

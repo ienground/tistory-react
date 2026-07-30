@@ -108,7 +108,7 @@ ${routeMeta
      *   filePath: 'src/Layout.tsx'
      * }
      */
-    return `{ pageName: '${route.pageName}', element: React.createElement(${component}), filePath: '${route.relativePath}' }`;
+    return `{ pageName: '${route.pageName}', component: ${component}, element: React.createElement(${component}), filePath: '${route.relativePath}' }`;
   })
   .join(',\n')}
 ];
