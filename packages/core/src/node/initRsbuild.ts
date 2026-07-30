@@ -79,13 +79,18 @@ async function createInternalBuildConfig(
 
   // Using latest browserslist in development to improve build performance
   const webBrowserslist = isProduction()
-    ? ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14']
+    ? [
+        'chrome >= 111',
+        'edge >= 111',
+        'firefox >= 128',
+        'safari >= 16.4',
+      ]
     : [
         'last 1 chrome version',
         'last 1 firefox version',
         'last 1 safari version',
       ];
-  const ssrBrowserslist = ['node >= 14'];
+  const ssrBrowserslist = ['node >= 20.19'];
 
   const [reactCSRAlias, reactSSRAlias] = await Promise.all([
     resolveReactAlias(reactVersion, false),
@@ -217,6 +222,7 @@ async function createInternalBuildConfig(
               },
               output: {
                 target: 'node',
+                module: false,
                 overrideBrowserslist: ssrBrowserslist,
                 distPath: {
                   root: ssrOutDir,

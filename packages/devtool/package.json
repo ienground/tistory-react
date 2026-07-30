@@ -24,7 +24,7 @@
     "dev": "modern build -w",
     "build": "modern build",
     "reset": "rimraf ./**/node_modules",
-    "test": "echo nothing"
+    "test": "node --test src/*.test.mjs"
   },
   "engines": {
     "node": ">=14.17.6"
@@ -37,10 +37,11 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@modern-js/plugin-tailwindcss": "^2.60.6",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "tailwindcss": "^3.4.14",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.5.3",
     "vitest": "^2.0.5"
   },

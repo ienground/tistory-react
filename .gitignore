@@ -6,3 +6,5 @@ lerna-debug.log
 
 # VSCode
 **/.DS_Store
+/.idea/
+/.vscode/

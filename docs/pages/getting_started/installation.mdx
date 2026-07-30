@@ -2,7 +2,7 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 
 # 설치
 
-시스템 요구 사항: `Node.js > 18` 이상
+시스템 요구 사항: `Node.js 20.19` 이상
 
 ## 자동 설치
 
@@ -21,6 +21,10 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 ?
 ```
 
+생성된 프로젝트에는 Tailwind CSS v4와 PostCSS 설정이 포함됩니다. `src/index.css`에서 디자인 토큰을 정의하고 컴포넌트의 `className`에서 유틸리티를 바로 사용할 수 있습니다.
+
+Tailwind CSS v4의 최소 브라우저 지원 범위에 맞춰 Chrome 111, Edge 111, Firefox 128, Safari 16.4 이상을 대상으로 빌드합니다.
+
 ## 수동 설치
 
 <Steps>
@@ -28,7 +32,24 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 ### 의존성 설치
 
 ```terminal
-$ yarn add tistory-react@latest react@latest react-dom@latest
+$ yarn add tistory-react@latest react@18.3.1 react-dom@18.3.1
+$ yarn add --dev tailwindcss@latest @tailwindcss/postcss@latest postcss@latest
+```
+
+프로젝트 루트에 `postcss.config.mjs`를 추가하세요.
+
+```javascript
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+```
+
+전역 CSS에서 Tailwind CSS를 불러오고 `Layout.tsx`에서 해당 CSS를 import하세요.
+
+```css
+@import 'tailwindcss';
 ```
 
 ### 스크립트 추가

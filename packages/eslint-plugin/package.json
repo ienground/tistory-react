@@ -9,7 +9,7 @@
   "scripts": {
     "build": "modern build",
     "test": "mocha src/**/*.test.ts",
-    "coverage": "nyc pnpm run test"
+    "coverage": "nyc npm run test"
   },
   "keywords": [
     "eslint",

@@ -1,8 +1,9 @@
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { expect, describe, test } from 'vitest';
 import fs from '@tistory-react/shared/fs-extra';
 
-import { bundleXml } from './build';
+import { bundleXml, renderHtml } from './build';
 import { normalizePath } from './utils';
 import { OUTPUT_DIR } from './constants';
 import type { UserConfig } from '@tistory-react/shared';
@@ -129,5 +130,30 @@ describe('bundleXml', async () => {
           </default>
       </skin>"
       `);
+  });
+});
+
+describe('renderHtml', () => {
+  test('Rsbuild가 생성한 HTML 템플릿으로 skin.html을 만든다', async () => {
+    const appDirectory = await fs.mkdtemp(join(tmpdir(), 'tistory-react-'));
+    const outputDirectory = join(appDirectory, OUTPUT_DIR);
+    const htmlTemplatePath = join(outputDirectory, 'index.html');
+
+    try {
+      await fs.ensureDir(outputDirectory);
+      await fs.writeFile(
+        htmlTemplatePath,
+        '<html><head><!--<?- HEAD ?>--></head><body><!--<?- DOC_CONTENT ?>--></body></html>',
+      );
+
+      await renderHtml(appDirectory, {}, false);
+
+      expect(await fs.readFile(join(outputDirectory, 'skin.html'), 'utf8')).toContain(
+        '<html lang="ko">',
+      );
+      expect(await fs.pathExists(htmlTemplatePath)).toBe(false);
+    } finally {
+      await fs.remove(appDirectory);
+    }
   });
 });

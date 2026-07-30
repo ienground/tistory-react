@@ -15,20 +15,26 @@
     "directory": "examples/ts"
   },
   "dependencies": {
-    "@tistory-react/eslint-plugin-tistory": "workspace:*",
+    "@tistory-react/eslint-plugin-tistory": "^0.0.13-alpha.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tistory-react": "workspace:*"
+    "tistory-react": "^0.0.14-alpha.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^18.3.3",
     "eslint": "^9.9.1",
     "eslint-plugin-react": "^7.35.2",
     "globals": "^15.9.0",
+    "postcss": "^8.5.25",
     "prettier": "^3.3.3",
+    "tailwindcss": "^4.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.6.0"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   }
 }
