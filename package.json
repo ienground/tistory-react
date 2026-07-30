@@ -15,7 +15,8 @@
 	},
 	"scripts": {
 		"lint": "biome lint . --diagnostic-level=warn",
-		"format": "biome format --write ./packages"
+		"format": "biome format --write ./packages",
+		"publish:all": "bash scripts/publish.sh"
 	},
 	"packageManager": "npm@12.0.2"
 }

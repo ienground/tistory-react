@@ -1,10 +1,10 @@
 {
   "name": "@ienlab/tistory-react-runtime",
-  "version": "0.0.10-alpha.0",
-  "bugs": "https://github.com/eunbae0/tistory-react/issues",
+  "version": "0.1.0-alpha.0",
+  "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eunbae0/tistory-react",
+    "url": "https://github.com/ienground/tistory-react",
     "directory": "packages/runtime"
   },
   "license": "MIT",

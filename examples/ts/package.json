@@ -1,6 +1,6 @@
 {
   "name": "tistory-react-example-ts",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha.0",
   "description": "",
   "main": "src/Layout.js",
   "type": "module",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eunbae0/tistory-react",
+    "url": "https://github.com/ienground/tistory-react",
     "directory": "examples/ts"
   },
   "dependencies": {

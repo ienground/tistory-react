@@ -32,4 +32,4 @@ $ npm run build
 ```
 
 ## License
-Tistory-react is licensed under the [MIT License](https://github.com/eunbae0/@ienlab/tistory-react/blob/main/LICENSE).
+Tistory-react is licensed under the [MIT License](https://github.com/eunbae0/tistory-react/blob/main/LICENSE).

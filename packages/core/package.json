@@ -1,11 +1,11 @@
 {
   "name": "@ienlab/tistory-react-core",
-  "version": "0.0.14-alpha.0",
+  "version": "0.1.0-alpha.0",
   "description": "Create Tistory Skin with React.js",
-  "bugs": "https://github.com/eunbae0/tistory-react/issues",
+  "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eunbae0/tistory-react",
+    "url": "https://github.com/ienground/tistory-react",
     "directory": "packages/cli/core"
   },
   "type": "module",
