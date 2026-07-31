@@ -1,6 +1,6 @@
 import type { UserConfig } from '@ienlab/tistory-react-shared';
-import { RspackVirtualModulePlugin } from 'rspack-plugin-virtual-module';
 import type { RsbuildPlugin } from '@rsbuild/core';
+import { RspackVirtualModulePlugin } from 'rspack-plugin-virtual-module';
 import type { RouteService } from '../route/RouteService';
 // import type { PluginDriver } from '../PluginDriver';
 import { routeVMPlugin } from './routeData';
@@ -73,6 +73,10 @@ export function rsbuildPluginDocVM(
 
 export enum RuntimeModuleID {
   RouteForClient = 'virtual-routes',
+  RouteStyles = 'virtual-route-styles',
 }
 
-export const runtimeModuleIDs = [RuntimeModuleID.RouteForClient];
+export const runtimeModuleIDs = [
+  RuntimeModuleID.RouteForClient,
+  RuntimeModuleID.RouteStyles,
+];

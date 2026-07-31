@@ -1,6 +1,6 @@
 {
   "name": "@ienlab/tistory-react",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0-alpha.9",
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -36,8 +36,35 @@
     "./component/Tags": {
       "default": "./tags.ts"
     },
+    "./component/List": {
+      "default": "./list.ts"
+    },
+    "./component/Paging": {
+      "default": "./paging.ts"
+    },
     "./config": {
       "default": "./config.ts"
+    },
+    "./component/T3": {
+      "default": "./t3.ts"
+    },
+    "./component/Cover": {
+      "default": "./cover.ts"
+    },
+    "./component/Protected": {
+      "default": "./protected.ts"
+    },
+    "./component/Notice": {
+      "default": "./notice.ts"
+    },
+    "./component/Page": {
+      "default": "./page.ts"
+    },
+    "./component/Guestbook": {
+      "default": "./guest.ts"
+    },
+    "./component/LocalLog": {
+      "default": "./local.ts"
     }
   },
   "scripts": {
@@ -84,6 +111,15 @@
     "devtool.ts",
     "runtime.ts",
     "sidebar.ts",
-    "tags.ts"
+    "tags.ts",
+    "list.ts",
+    "paging.ts",
+    "t3.ts",
+    "cover.ts",
+    "protected.ts",
+    "notice.ts",
+    "page.ts",
+    "guest.ts",
+    "local.ts"
   ]
 }

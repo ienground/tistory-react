@@ -2,6 +2,7 @@ import path from 'node:path';
 import {
   TISTORY_REACT_TEMP_DIR,
   type UserConfig,
+  normalizeSlash,
   removeLeadingSlash,
   removeTrailingSlash,
 } from '@ienlab/tistory-react-shared';
@@ -18,6 +19,7 @@ import {
   DEFAULT_TITLE,
   OUTPUT_DIR,
   PACKAGE_ROOT,
+  PRODUCTION_CLIENT_ENTRY,
   PUBLIC_DIR,
   SSR_ENTRY,
   TISTORY_DEFAULT_CSS_NAME,
@@ -53,10 +55,16 @@ async function createInternalBuildConfig(
   runtimeTempDir: string,
 ): Promise<RsbuildConfig> {
   const cwd = process.cwd();
-  const base = config?.base ?? '';
+  const base = normalizeSlash(config?.base ?? '');
   const baseOutDir = config?.outDir ?? OUTPUT_DIR;
   const csrOutDir = baseOutDir;
   const ssrOutDir = path.join(baseOutDir, 'ssr');
+  const generatedDirectoryGlobs = [
+    '**/build/**',
+    '**/dist/**',
+    '**/.tistory-react/**',
+    `${path.resolve(baseOutDir)}/**`,
+  ];
 
   // const DEFAULT_THEME = require.resolve("@rspress/theme-default");
 
@@ -138,15 +146,18 @@ async function createInternalBuildConfig(
       },
       legalComments: 'none',
     },
-    source: {
+    resolve: {
       alias: {
         '@ienlab/tistory-react-core': PACKAGE_ROOT,
       },
+    },
+    source: {
       include: [
         PACKAGE_ROOT,
         path.join(cwd, 'node_modules', TISTORY_REACT_TEMP_DIR),
       ],
       define: {
+        'process.env.__BASE__': JSON.stringify(base),
         'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
         'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
         'process.env.TEST': JSON.stringify(process.env.TEST),
@@ -172,6 +183,17 @@ async function createInternalBuildConfig(
     tools: {
       bundlerChain(chain, { target }) {
         const isServer = target === 'node';
+        const watchOptions = chain.get('watchOptions') ?? {};
+        const ignored = watchOptions.ignored
+          ? Array.isArray(watchOptions.ignored)
+            ? watchOptions.ignored
+            : [watchOptions.ignored]
+          : [];
+
+        chain.watchOptions({
+          ...watchOptions,
+          ignored: [...ignored, ...generatedDirectoryGlobs],
+        });
 
         if (isServer) {
           chain.output.filename('main.cjs');
@@ -185,14 +207,15 @@ async function createInternalBuildConfig(
         },
         source: {
           entry: {
-            index: CLIENT_ENTRY,
+            index: isProduction() ? PRODUCTION_CLIENT_ENTRY : CLIENT_ENTRY,
           },
           define: {
             'process.env.__SSR__': JSON.stringify(false),
+            'process.env.__BASE__': JSON.stringify(base),
             'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
             'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
             'process.env.__ENABLE_VARIABLE_SWAP___': JSON.stringify(
-              config.dev?.enableVariableSwap ?? true,
+              !isProduction() && (config.dev?.enableVariableSwap ?? true),
             ),
           },
         },
@@ -220,6 +243,7 @@ async function createInternalBuildConfig(
                 },
                 define: {
                   'process.env.__SSR__': JSON.stringify(true),
+                  'process.env.__BASE__': JSON.stringify(base),
                   'process.env.__IS_REACT_18__': JSON.stringify(
                     reactVersion >= 18,
                   ),

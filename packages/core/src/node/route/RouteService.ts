@@ -1,9 +1,9 @@
 import path from 'node:path';
 import type { RouteMeta } from '@ienlab/tistory-react-shared';
-import { normalizePath, isTistoryRouteFile, extractPageName } from '../utils';
+import { extractPageName, isTistoryRouteFile, normalizePath } from '../utils';
 
 export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx'];
-export const DEFAULT_PAGE_ROUTE_PATHS = ['main', 'article', 'tags'];
+export const DEFAULT_PAGE_ROUTE_PATHS = ['main', 'article', 'tags', 'cover', 'protected', 'page', 'notice', 'local', 'guest'];
 
 export class RouteService {
   routeData: Map<string, RouteMeta> = new Map();
@@ -79,6 +79,12 @@ export class RouteService {
 
   generateRoutesCode() {
     return this.generateRoutesCodeByRouteMeta(this.getRoutes());
+  }
+
+  generateStyleImportsCode() {
+    return this.getRoutes()
+      .map(route => `import '${route.absolutePath}';`)
+      .join('\n');
   }
 
   generateRoutesCodeByRouteMeta(routeMeta: RouteMeta[]) {

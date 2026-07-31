@@ -2,8 +2,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   TISTORY_REACT_TEMP_DIR,
-  type TistorySkinConfig,
   type TistorySkinAuthorConfig,
+  type TistorySkinConfig,
   type TistorySkinDefaultConfig,
   type TistorySkinInformationConfig,
 } from '@ienlab/tistory-react-shared';
@@ -23,6 +23,13 @@ export const CLIENT_ENTRY = path.join(
   'dist',
   'runtime',
   'clientEntry.js',
+);
+
+export const PRODUCTION_CLIENT_ENTRY = path.join(
+  PACKAGE_ROOT,
+  'dist',
+  'runtime',
+  'productionClientEntry.js',
 );
 
 export const SSR_ENTRY = path.join(

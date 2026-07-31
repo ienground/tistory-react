@@ -1,8 +1,8 @@
-import { isProduction } from '@ienlab/tistory-react-shared';
-import { BrowserRouter } from '@ienlab/tistory-react-runtime';
-import { App } from './App';
 import { DevTools } from '@ienlab/tistory-react-devtool';
-import { useRemoveTistoryTags } from 'utils';
+import { BrowserRouter } from '@ienlab/tistory-react-runtime';
+import { isProduction } from '@ienlab/tistory-react-shared';
+import { App } from './App';
+import { useRemoveTistoryTags } from './utils';
 
 import '@ienlab/tistory-react-devtool/css';
 
@@ -12,7 +12,7 @@ export async function renderInBrowser() {
   const RootApp = () => {
     useRemoveTistoryTags();
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.__BASE__ || undefined}>
         <App />
         <DevTools />
       </BrowserRouter>

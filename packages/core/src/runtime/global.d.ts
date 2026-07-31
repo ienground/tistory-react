@@ -9,3 +9,5 @@ declare module 'virtual-routes-ssr' {
 
   export const routes: Route[];
 }
+
+declare module 'virtual-route-styles';

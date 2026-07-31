@@ -23,6 +23,14 @@ import type { RepWrapperProps } from '#component/types';
   ```
  */
 export const Permalink = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return (
+      <s_permalink_article_rep data-is-tistory-tag>
+        {children}
+      </s_permalink_article_rep>
+    );
+  }
   return (
     <s_permalink_article_rep data-is-tistory-tag>
       <div {...props} />
@@ -55,6 +63,14 @@ Permalink.parent = 'Article';
   ```
  */
 export const Index = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return (
+      <s_index_article_rep data-is-tistory-tag>
+        {children}
+      </s_index_article_rep>
+    );
+  }
   return (
     <s_index_article_rep data-is-tistory-tag>
       <div {...props} />

@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { expect, describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { extractPageName, isTistoryRouteFile, normalizePath } from '../utils';
 import { RouteService } from './RouteService';
 
@@ -49,5 +49,15 @@ describe('RouteService', async () => {
         },
       ]
     `);
+  });
+
+  test('production 스타일 entry용 route import를 생성한다', () => {
+    expect(routeService.generateStyleImportsCode()).toBe(
+      [
+        `import '${testDir}/src/Layout.tsx';`,
+        `import '${testDir}/src/pages/article/index.jsx';`,
+        `import '${testDir}/src/pages/tags/index.tsx';`,
+      ].join('\n'),
+    );
   });
 });

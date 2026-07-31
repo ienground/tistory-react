@@ -5,5 +5,6 @@ export async function routeVMPlugin(context: FactoryContext) {
 
   return {
     [RuntimeModuleID.RouteForClient]: routeService.generateRoutesCode(),
+    [RuntimeModuleID.RouteStyles]: routeService.generateStyleImportsCode(),
   };
 }

@@ -1,12 +1,13 @@
-import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { expect, describe, test } from 'vitest';
+import { join } from 'node:path';
 import fs from '@ienlab/tistory-react-shared/fs-extra';
+import { describe, expect, test } from 'vitest';
 
-import { bundleXml, renderHtml } from './build';
-import { normalizePath } from './utils';
-import { OUTPUT_DIR } from './constants';
 import type { UserConfig } from '@ienlab/tistory-react-shared';
+import { bundleXml, renderHtml } from './build';
+import { OUTPUT_DIR } from './constants';
+import { initRsbuild } from './initRsbuild';
+import { normalizePath } from './utils';
 
 describe('bundleXml', async () => {
   const testDir = normalizePath(join(__dirname, 'fixtures'));
@@ -148,12 +149,51 @@ describe('renderHtml', () => {
 
       await renderHtml(appDirectory, {}, false);
 
-      expect(await fs.readFile(join(outputDirectory, 'skin.html'), 'utf8')).toContain(
-        '<html lang="ko">',
-      );
+      expect(
+        await fs.readFile(join(outputDirectory, 'skin.html'), 'utf8'),
+      ).toContain('<html lang="ko">');
       expect(await fs.pathExists(htmlTemplatePath)).toBe(false);
     } finally {
       await fs.remove(appDirectory);
     }
+  });
+
+  test('임시 티스토리 속성을 실제 치환자 속성으로 복원한다', async () => {
+    const appDirectory = await fs.mkdtemp(join(tmpdir(), 'tistory-react-'));
+    const outputDirectory = join(appDirectory, OUTPUT_DIR);
+    const htmlTemplatePath = join(outputDirectory, 'index.html');
+
+    try {
+      await fs.ensureDir(outputDirectory);
+      await fs.writeFile(
+        htmlTemplatePath,
+        '<html><head><!--<?- HEAD ?>--></head><body><a data-tistory-attribute="[##_prev_page_##]">이전</a><!--<?- DOC_CONTENT ?>--></body></html>',
+      );
+
+      await renderHtml(appDirectory, {}, false);
+
+      const skinHtml = await fs.readFile(
+        join(outputDirectory, 'skin.html'),
+        'utf8',
+      );
+      expect(skinHtml).toContain('<a [##_prev_page_##]>이전</a>');
+      expect(skinHtml).not.toContain('data-tistory-attribute');
+    } finally {
+      await fs.remove(appDirectory);
+    }
+  });
+});
+
+describe('client base path', () => {
+  test('base 경로를 정규화해 클라이언트 환경에 전달한다', async () => {
+    const projectRoot = normalizePath(
+      join(__dirname, '../../../../examples/ts'),
+    );
+    const rsbuild = await initRsbuild(projectRoot, { base: 'blog/' }, false);
+    const config = rsbuild.getRsbuildConfig();
+
+    expect(
+      config.environments?.web?.source?.define?.['process.env.__BASE__'],
+    ).toBe('"/blog"');
   });
 });

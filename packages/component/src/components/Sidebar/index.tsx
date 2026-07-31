@@ -68,6 +68,9 @@ Sidebar.Search = Search;
 Sidebar.SearchInput = SearchInput;
 Sidebar.SearchInputSubmit = SearchInputSubmit;
 
+
+
+
 export { NOTICE_LINK, NOTICE_TITLE } from './Notice';
 export {
   RECENT_POPULAR_ARTICLE_LINK,
@@ -98,3 +101,36 @@ export {
   SEARCH_TEXT,
   SEARCH_ONCLICK_SUBMIT,
 } from './Search';
+
+
+const LinkRep = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return <s_link_rep data-is-tistory-tag>{children}</s_link_rep>;
+  }
+  return (
+    <s_link_rep data-is-tistory-tag>
+      <div {...props} />
+    </s_link_rep>
+  );
+};
+
+const ArchiveRep = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return <s_archive_rep data-is-tistory-tag>{children}</s_archive_rep>
+  }
+  return (
+    <s_archive_rep data-is-tistory-tag>
+      <div {...props} />
+    </s_archive_rep>
+  );
+};
+
+Sidebar.LinkRep = LinkRep;
+Sidebar.ArchiveRep = ArchiveRep;
+
+export const SIDEBAR_LINK_URL = '[##_link_url_##]';
+export const SIDEBAR_LINK_SITE = '[##_link_site_##]';
+export const SIDEBAR_ARCHIVE_LINK = '[##_archive_rep_link_##]';
+export const SIDEBAR_ARCHIVE_DATE = '[##_archive_rep_date_##]';

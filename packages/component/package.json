@@ -1,6 +1,6 @@
 {
   "name": "@ienlab/tistory-react-component",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0-alpha.9",
   "description": "The Default Component of Tistory-react Framework, Provide Tistory Components",
   "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
@@ -30,13 +30,49 @@
       "types": "./dist/Tags/index.d.ts",
       "default": "./dist/Tags/index.js"
     },
-    "./package.json": "./package.json"
+    "./List": {
+      "types": "./dist/List/index.d.ts",
+      "default": "./dist/List/index.js"
+    },
+    "./Paging": {
+      "types": "./dist/Paging/index.d.ts",
+      "default": "./dist/Paging/index.js"
+    },
+    "./package.json": "./package.json",
+    "./T3": {
+      "types": "./dist/T3/index.d.ts",
+      "default": "./dist/T3/index.js"
+    },
+    "./Cover": {
+      "types": "./dist/Cover/index.d.ts",
+      "default": "./dist/Cover/index.js"
+    },
+    "./Protected": {
+      "types": "./dist/Protected/index.d.ts",
+      "default": "./dist/Protected/index.js"
+    },
+    "./Notice": {
+      "types": "./dist/Notice/index.d.ts",
+      "default": "./dist/Notice/index.js"
+    },
+    "./Page": {
+      "types": "./dist/Page/index.d.ts",
+      "default": "./dist/Page/index.js"
+    },
+    "./Guestbook": {
+      "types": "./dist/Guestbook/index.d.ts",
+      "default": "./dist/Guestbook/index.js"
+    },
+    "./LocalLog": {
+      "types": "./dist/LocalLog/index.d.ts",
+      "default": "./dist/LocalLog/index.js"
+    }
   },
   "scripts": {
     "dev": "modern build -w",
     "build": "modern build",
     "reset": "rimraf ./**/node_modules",
-    "test": "echo nothing"
+    "test": "vitest run"
   },
   "engines": {
     "node": ">=14.17.6"

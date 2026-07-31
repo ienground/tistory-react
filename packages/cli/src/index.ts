@@ -1,11 +1,12 @@
 import { createRequire } from 'node:module';
 import path from 'node:path';
-import { cac } from 'cac';
-import chokidar from 'chokidar';
-import chalk from 'chalk';
+import { build, dev } from '@ienlab/tistory-react-core';
 import { logger } from '@ienlab/tistory-react-shared/logger';
+import { cac } from 'cac';
+import chalk from 'chalk';
+import chokidar from 'chokidar';
 import { loadConfigFile } from './config/loadConfigFile';
-import { dev, build } from '@ienlab/tistory-react-core';
+import { DEV_WATCH_IGNORED_GLOBS } from './constants';
 
 const CONFIG_FILES = ['tistory-react.config.ts', 'tistory-react.config.js'];
 
@@ -63,7 +64,13 @@ cli
           [`${cwd}/**/{${CONFIG_FILES.join(',')}}`, docDirectory!],
           {
             ignoreInitial: true,
-            ignored: ['**/node_modules/**', '**/.git/**', '**/.DS_Store/**'],
+            ignored: [
+              '**/node_modules/**',
+              '**/.git/**',
+              '**/.DS_Store/**',
+              ...DEV_WATCH_IGNORED_GLOBS,
+              `${path.resolve(config.outDir ?? path.join(cwd, 'build'))}/**`,
+            ],
           },
         );
         cliWatcher.on('all', async (eventName, filepath) => {

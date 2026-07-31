@@ -123,7 +123,15 @@ export async function renderHtml(
       )
       .replaceAll(TEMP_ONCLICK_ATTR, 'onclick')
       .replaceAll(TEMP_ONKEYPRESS_ATTR, 'onkeypress')
-      .replaceAll(TISTORY_TAG_IDENTIFIER, '');
+      .replaceAll('data-onsubmit', 'onsubmit')
+      .replaceAll(
+        /data-tistory-attribute="(\[##_.*?_##\])"/g,
+        '$1',
+      )
+      .replaceAll('<!-- -->', '')
+      .replaceAll(' ' + TISTORY_TAG_IDENTIFIER, '')
+      .replaceAll(TISTORY_TAG_IDENTIFIER, '')
+      .replaceAll(/style="([^"]*?)"/g, (_, p1) => 'style="' + p1.replaceAll('&quot;', "'").replaceAll('&#x27;', "'") + '"');
 
     const fileName = 'skin.html';
     await fs.ensureDir(join(outputPath, dirname(fileName)));
