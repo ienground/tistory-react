@@ -22,7 +22,7 @@ import { Comment, COMMENT_DESC } from '@ienlab/tistory-react/component/Comment';
 
 export default function ArticlePage() {
   return (
-    <div className="area_view">
+    <div className="area_view page_article_view">
       <Article>
         <Article.Index>
           <div className="list_index category_type_[##_var_listType_##] category_index_list">
@@ -48,14 +48,12 @@ export default function ArticlePage() {
           <div id="page_scroll"></div>
           <div className="area_article">
             <div className="article_header">
-              <div className="inner_header" style={{ backgroundImage: "url('images/img_dev.png')" }}>
-                <div className="info_text">
-                  <strong className="title_post">{ARTICLE_TITLE}</strong>
-                  <p className="info">
-                    <span className="date">{ARTICLE_DATE}</span> <span>{ARTICLE_CATEGORY}</span>
-                  </p>
-                </div>
-              </div>
+              <h1 className="title_post">{ARTICLE_TITLE}</h1>
+              <p className="info">
+                <span className="date">{ARTICLE_DATE}</span>
+                <span>·</span>
+                <span className="category">{ARTICLE_CATEGORY}</span>
+              </p>
             </div>
 
             <div className="article_view">{ARTICLE_DESCRIPTION}</div>
@@ -63,9 +61,6 @@ export default function ArticlePage() {
             <div className="article_content">
               <Article.Tag>
                 <div className="area_tag">
-                  <h3 className="title_tag">
-                    <i className="material-icons-round">label</i>
-                  </h3>
                   <div className="tag_content thema_apply">{TAG_LABEL}</div>
                 </div>
               </Article.Tag>
@@ -150,20 +145,20 @@ export default function ArticlePage() {
 
               <Article.Related>
                 <div className="area_related">
-                  <h3 className="title_related">관련글</h3>
-                  <ul className="list_related">
+                  <h3 className="title_related title_section">관련글</h3>
+                  <ul className="list_related list_category">
                     <Article.RelatedRep>
-                      <li className="item_related">
-                        <Article.RelatedLink className="link_related">
+                      <li className="item_related item_category">
+                        <Article.RelatedLink className="link_related link_category">
                           <Article.RelatedThumbnail>
                             <span
                               className="thumnail item-thumbnail"
                               style={{ backgroundImage: 'url("' + RELATED_THUMBNAIL_LINK + '")' }}
                             />
                           </Article.RelatedThumbnail>
-                          <div className="box_content">
-                            <strong id="related_rep">{RELATED_ARTICLE_TITLE}</strong>
-                            <span className="info">{RELATED_ARTICLE_DATE}</span>
+                          <div className="info">
+                            <strong className="name">{RELATED_ARTICLE_TITLE}</strong>
+                            <span className="date">{RELATED_ARTICLE_DATE}</span>
                           </div>
                         </Article.RelatedLink>
                       </li>

@@ -11,7 +11,7 @@ import {
 export default function CoverPage() {
   return (
     <CoverGroup>
-      <div className="area_cover">
+      <div className="area_cover page_cover_view">
         <CoverGroup.Rep>
           <CoverGroup.Cover name="featured">
             <div className="type_featured">

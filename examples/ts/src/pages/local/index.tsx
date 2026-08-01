@@ -10,9 +10,9 @@ import {
 export default function LocalPage() {
   return (
     <LocalLog>
-      <div className="area_common">
+      <div className="area_common page_local_view">
         <section id="localog" className="box_tag_trail row nonEntry main">
-          <h3 className="title_common">Local Log</h3>
+          <h3 className="title_common title_section">Local Log</h3>
           <LocalLog.SpotRep>
             <div className="spot" style={{ marginLeft: LOCAL_SPOT_DEPTH + 'px' }}>
               {LOCAL_SPOT}

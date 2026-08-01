@@ -8,16 +8,12 @@ import {
 export default function StaticPage() {
   return (
     <Page>
-      <div className="area_article">
+      <div className="area_article area_static_page page_page_view">
         <div className="article_header">
-          <div className="inner_header" style={{ backgroundImage: "url('')" }}>
-            <div className="info_text">
-              <strong className="title_post">{ARTICLE_TITLE}</strong>
-              <p className="info">
-                <span className="date">{ARTICLE_DATE}</span>
-              </p>
-            </div>
-          </div>
+          <h1 className="title_post">{ARTICLE_TITLE}</h1>
+          <p className="info">
+            <span className="date">{ARTICLE_DATE}</span>
+          </p>
         </div>
         <div className="article_view">{ARTICLE_DESCRIPTION}</div>
       </div>

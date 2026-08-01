@@ -15,7 +15,7 @@ import {
 
 export default function Main() {
   return (
-    <>
+    <div className="page_main_view">
       <List>
         <div className="area_category category_type_[##_var_listType_##] category_search_list">
           <h2 className="title_section">
@@ -55,6 +55,6 @@ export default function Main() {
           </Paging.Next>
         </div>
       </Paging>
-    </>
+    </div>
   );
 }

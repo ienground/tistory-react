@@ -18,10 +18,10 @@ import {
 export default function GuestbookPage() {
   return (
     <Guestbook>
-      <div className="area_common">
+      <div className="area_common page_guestbook_view">
         <div className="area_article">
           <div className="area_reply">
-            <h2 className="title_common">방명록</h2>
+            <h2 className="title_common title_section">방명록</h2>
             <div className="reply_content">
               <div className="box_comment_list">
                 <Guestbook.Container>

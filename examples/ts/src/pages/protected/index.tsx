@@ -12,17 +12,13 @@ import {
 export default function ProtectedPage() {
   return (
     <Protected>
-      <div className="area_view">
+      <div className="area_view page_protected_view">
         <div className="area_article">
           <div className="article_header">
-            <div className="inner_header" style={{ backgroundImage: "url('')" }}>
-              <div className="info_text">
-                <strong className="title_post">{ARTICLE_TITLE}</strong>
-                <p className="info">
-                  <span className="date">{ARTICLE_DATE}</span>ㆍ<span>{ARTICLE_CATEGORY}</span>
-                </p>
-              </div>
-            </div>
+            <h1 className="title_post">{ARTICLE_TITLE}</h1>
+            <p className="info">
+              <span className="date">{ARTICLE_DATE}</span> <span>·</span> <span>{ARTICLE_CATEGORY}</span>
+            </p>
           </div>
           <div className="article_view">
             <form className="protected_form" data-onsubmit="[##_article_dissolve_##]">
