@@ -1,6 +1,6 @@
 {
   "name": "@ienlab/tistory-react-component",
-  "version": "0.1.0-alpha.11",
+  "version": "0.1.0-beta.1",
   "description": "The Default Component of Tistory-react Framework, Provide Tistory Components",
   "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
