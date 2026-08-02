@@ -7,6 +7,20 @@ npm install
 echo "📌 버전 동기화 중..."
 npm run version:sync
 
+# ==========================================
+# 사용법 (Usage):
+# ./scripts/publish.sh [TAG]
+#
+# 1. Alpha 배포 (기본값)
+#    ./scripts/publish.sh
+#    또는 ./scripts/publish.sh alpha
+#
+# 2. Beta 배포
+#    ./scripts/publish.sh beta
+#
+# 3. Release (정식) 배포
+#    ./scripts/publish.sh latest
+# ==========================================
 TAG="${1:-alpha}"
 
 echo "🔨 [1/8] @ienlab/tistory-react-shared 빌드 및 배포..."
