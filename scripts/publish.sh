@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-echo "🚀 의존성 확인 중..."
-npm install
-
 echo "📌 버전 동기화 중..."
 npm run version:sync
+
+echo "🚀 의존성 확인 중..."
+npm install
 
 # ==========================================
 # 사용법 (Usage):

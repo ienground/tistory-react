@@ -1,1 +1,1 @@
-export { StaticRouter } from 'react-router-dom/server';
+export { StaticRouter } from 'react-router';

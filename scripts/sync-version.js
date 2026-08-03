@@ -27,12 +27,29 @@ if (fs.existsSync("lerna.json")) {
 
 const packagesDir = "packages";
 const packages = fs.readdirSync(packagesDir);
+const dependencySections = [
+  "dependencies",
+  "devDependencies",
+  "peerDependencies",
+  "optionalDependencies",
+];
 
 packages.forEach(pkgName => {
   const pkgJsonPath = path.join(packagesDir, pkgName, "package.json");
   if (fs.existsSync(pkgJsonPath)) {
     const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
     pkg.version = targetVersion;
+
+    dependencySections.forEach(section => {
+      if (!pkg[section]) return;
+
+      Object.keys(pkg[section])
+        .filter(dependencyName => dependencyName.startsWith("@ienlab/"))
+        .forEach(dependencyName => {
+          pkg[section][dependencyName] = "^" + targetVersion;
+        });
+    });
+
     fs.writeFileSync(pkgJsonPath, JSON.stringify(pkg, null, 2) + "\n");
     console.log("  - Updated " + pkg.name + ": " + targetVersion);
   }

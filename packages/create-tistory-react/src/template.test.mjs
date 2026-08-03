@@ -16,7 +16,7 @@ async function readTemplateFile(relativePath) {
 test('생성 템플릿이 공개된 최신 tistory-react 버전을 사용한다', async () => {
   const packageJson = JSON.parse(await readTemplateFile('package.json'));
 
-  assert.equal(packageJson.dependencies['@ienlab/tistory-react'], '^0.1.0');
+  assert.match(packageJson.dependencies['@ienlab/tistory-react'], /^\^0\.4\./);
 });
 
 test('생성 템플릿이 Tailwind CSS v4 PostCSS 구성을 제공한다', async () => {

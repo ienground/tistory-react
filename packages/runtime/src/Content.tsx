@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { removeLeadingSlash } from '@ienlab/tistory-react-shared';
 import { createElement } from 'react';
 
