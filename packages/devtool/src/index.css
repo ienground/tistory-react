@@ -4,3 +4,7 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @source './';
+
+[data-is-tistory-tag] {
+  display: contents;
+}

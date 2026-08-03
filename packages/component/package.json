@@ -1,6 +1,6 @@
 {
   "name": "@ienlab/tistory-react-component",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "The Default Component of Tistory-react Framework, Provide Tistory Components",
   "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
@@ -78,8 +78,8 @@
     "node": ">=14.17.6"
   },
   "dependencies": {
-    "@ienlab/tistory-react-runtime": "^0.4.2",
-    "@ienlab/tistory-react-shared": "^0.4.2",
+    "@ienlab/tistory-react-runtime": "^0.4.3",
+    "@ienlab/tistory-react-shared": "^0.4.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

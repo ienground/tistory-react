@@ -28,3 +28,9 @@ test('DevTools CSS가 사용자 스킨에 Preflight를 주입하지 않는다', 
   assert.doesNotMatch(css, /@tailwind\s+base/);
   assert.match(css, /tailwindcss\/utilities\.css/);
 });
+
+test('Tistory wrapper를 React DOM 트리에서 제거하지 않고 시각적으로 평탄화한다', async () => {
+  const css = await readPackageFile('src/index.css');
+
+  assert.match(css, /\[data-is-tistory-tag\]\s*\{[\s\S]*display:\s*contents;/);
+});
