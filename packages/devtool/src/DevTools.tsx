@@ -71,7 +71,7 @@ export const DevTools = () => {
   );
 
   return (
-    <div className="fixed bottom-[24px] right-[24px] z-[999999] [font-family:system-ui,-apple-system,sans-serif] [font-size:14px] [line-height:1.5] text-slate-100 antialiased select-none">
+    <div className="tistory-react-devtools fixed bottom-[24px] right-[24px] z-[999999] [font-family:system-ui,-apple-system,sans-serif] [font-size:14px] [line-height:1.5] text-slate-100 antialiased select-none">
       {!openPopup ? (
         <button
           type="button"

@@ -8,3 +8,15 @@
 [data-is-tistory-tag] {
   display: contents;
 }
+
+.tistory-react-devtools,
+.tistory-react-devtools * {
+  cursor: auto !important;
+}
+
+.tistory-react-devtools button,
+.tistory-react-devtools select,
+.tistory-react-devtools a,
+.tistory-react-devtools [role="button"] {
+  cursor: pointer !important;
+}
