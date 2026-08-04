@@ -2,8 +2,8 @@ name: Publish Packages
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,13 @@ jobs:
         run: npm ci
 
       - name: Run publish script
-        run: bash scripts/publish.sh
+        run: |
+          if [[ "${{ github.ref_name }}" == *-alpha* ]]; then
+            bash scripts/publish.sh alpha
+          elif [[ "${{ github.ref_name }}" == *-beta* ]]; then
+            bash scripts/publish.sh beta
+          else
+            bash scripts/publish.sh latest
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
