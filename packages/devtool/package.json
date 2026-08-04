@@ -1,11 +1,11 @@
 {
-  "name": "@tistory-react/devtool",
-  "version": "0.0.13-alpha.0",
+  "name": "@ienlab/tistory-react-devtool",
+  "version": "0.4.4",
   "description": "DevTools of Tistory-react Framework",
-  "bugs": "https://github.com/eunbae0/tistory-react/issues",
+  "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eunbae0/tistory-react",
+    "url": "https://github.com/ienground/tistory-react",
     "directory": "packages/devtool"
   },
   "license": "MIT",
@@ -24,23 +24,24 @@
     "dev": "modern build -w",
     "build": "modern build",
     "reset": "rimraf ./**/node_modules",
-    "test": "echo nothing"
+    "test": "node --test src/*.test.mjs"
   },
   "engines": {
     "node": ">=14.17.6"
   },
   "dependencies": {
-    "@tistory-react/component": "^0.0.13-alpha.0",
-    "@tistory-react/runtime": "^0.0.10-alpha.0",
-    "@tistory-react/shared": "^0.0.10-alpha.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@ienlab/tistory-react-component": "^0.4.4",
+    "@ienlab/tistory-react-runtime": "^0.4.4",
+    "@ienlab/tistory-react-shared": "^0.4.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@modern-js/plugin-tailwindcss": "^2.60.6",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "tailwindcss": "^3.4.14",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.5.3",
     "vitest": "^2.0.5"
   },

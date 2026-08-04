@@ -1,1 +1,1 @@
-export * from '@tistory-react/devtool';
+export * from '@ienlab/tistory-react-devtool';

@@ -1,4 +1,4 @@
-import { Content } from '@tistory-react/runtime';
+import { Content } from '@ienlab/tistory-react-runtime';
 
 export function App() {
   return <Content />;

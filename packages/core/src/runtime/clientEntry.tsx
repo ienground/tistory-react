@@ -1,27 +1,49 @@
-import { isProduction } from '@tistory-react/shared';
-import { BrowserRouter } from '@tistory-react/runtime';
+import { DevTools } from '@ienlab/tistory-react-devtool';
+import { BrowserRouter } from '@ienlab/tistory-react-runtime';
+import { isProduction } from '@ienlab/tistory-react-shared';
+import { createPortal } from 'react-dom';
 import { App } from './App';
-import { DevTools } from '@tistory-react/devtool';
-import { useRemoveTistoryTags } from 'utils';
+import {
+  type ReactDomClientLike,
+  ensureTistoryPortalHost,
+  mountReactRoot,
+} from './clientRoot';
 
-import '@tistory-react/devtool/css';
+import '@ienlab/tistory-react-devtool/css';
 
-export async function renderInBrowser() {
-  const container = document.getElementById('root')!;
+export interface RenderInBrowserOptions {
+  hydrate?: boolean;
+  prepareTistoryTags?: boolean;
+}
+
+export async function renderInBrowser({
+  hydrate = false,
+  prepareTistoryTags = !hydrate,
+}: RenderInBrowserOptions = {}) {
+  const container = document.getElementById('root');
+  if (!container) return;
+
+  const portalHost = ensureTistoryPortalHost(container);
 
   const RootApp = () => {
-    useRemoveTistoryTags();
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.__BASE__ || undefined}>
         <App />
-        <DevTools />
+        {createPortal(<DevTools />, portalHost)}
       </BrowserRouter>
     );
   };
 
   if (process.env.__IS_REACT_18__) {
-    const { createRoot } = require('react-dom/client');
-    createRoot(container).render(<RootApp />);
+    const reactDomClient = require('react-dom/client') as ReactDomClientLike;
+    const root = mountReactRoot({
+      container,
+      app: <RootApp />,
+      hydrate,
+      prepareTistoryTags,
+      reactDomClient,
+    });
+    if (!hydrate) root.render(<RootApp />);
   } else {
     const ReactDOM = require('react-dom');
     if (isProduction()) {
@@ -32,4 +54,6 @@ export async function renderInBrowser() {
   }
 }
 
-renderInBrowser();
+if (typeof document !== 'undefined') {
+  renderInBrowser();
+}

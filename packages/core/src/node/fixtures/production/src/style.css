@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'ProductionFixture';
+  src: url('./assets/fixture.woff2') format('woff2');
+}
+
+.production-fixture {
+  background-image: url('./assets/fixture.svg');
+  font-family: 'ProductionFixture', sans-serif;
+}

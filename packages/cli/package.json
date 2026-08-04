@@ -1,74 +1,125 @@
 {
-	"name": "tistory-react",
-	"version": "0.0.14-alpha.0",
-	"type": "module",
-	"types": "./dist/index.d.ts",
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"bin": {
-		"tistory-react": "./bin/tistory-react.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/eunbae0/tistory-react",
-		"directory": "packages/cli"
-	},
-	"exports": {
-		".": {
-			"default": "./dist/index.js"
-		},
-		"./runtime": {
-			"default": "./runtime.ts"
-		},
-		"./devtool": {
-			"default": "./devtool.ts"
-		},
-		"./component/Article": {
-			"default": "./article.ts"
-		},
-		"./component/Comment": {
-			"default": "./comment.ts"
-		},
-		"./component/Sidebar": {
-			"default": "./sidebar.ts"
-		},
-		"./component/Tags": {
-			"default": "./tags.ts"
-		},
-		"./config": {
-			"default": "./config.ts"
-		}
-	},
-	"scripts": {
-		"dev": "modern build -w",
-		"build": "modern build",
-		"build:watch": "modern build -w",
-		"test": "vitest run",
-		"reset": "rimraf ./**/node_modules",
-		"new": "modern new",
-		"upgrade": "modern upgrade"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@rsbuild/core": "1.0.1-beta.2",
-		"@tistory-react/component": "^0.0.13-alpha.0",
-		"@tistory-react/core": "^0.0.14-alpha.0",
-		"@tistory-react/devtool": "^0.0.13-alpha.0",
-		"@tistory-react/runtime": "^0.0.10-alpha.0",
-		"@tistory-react/shared": "^0.0.10-alpha.0",
-		"cac": "^6.7.14",
-		"chalk": "^5.3.0",
-		"chokidar": "^3.6.0"
-	},
-	"devDependencies": {
-		"@types/node": "^20.14.11",
-		"typescript": "^5.5.3"
-	},
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org/"
-	},
-	"gitHead": "5955246c00aab7a0e66bc7c7626f8eef2114d96a"
+  "name": "@ienlab/tistory-react",
+  "version": "0.4.4",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "bin": {
+    "ienlab-tistory-react": "./bin/ienlab-tistory-react.js",
+    "tistory-react": "./bin/ienlab-tistory-react.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ienground/tistory-react",
+    "directory": "packages/cli"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    },
+    "./runtime": {
+      "default": "./runtime.ts"
+    },
+    "./devtool": {
+      "default": "./devtool.ts"
+    },
+    "./component/Article": {
+      "default": "./article.ts"
+    },
+    "./component/Comment": {
+      "default": "./comment.ts"
+    },
+    "./component/Sidebar": {
+      "default": "./sidebar.ts"
+    },
+    "./component/Tags": {
+      "default": "./tags.ts"
+    },
+    "./component/List": {
+      "default": "./list.ts"
+    },
+    "./component/Paging": {
+      "default": "./paging.ts"
+    },
+    "./config": {
+      "default": "./config.ts"
+    },
+    "./component/T3": {
+      "default": "./t3.ts"
+    },
+    "./component/Cover": {
+      "default": "./cover.ts"
+    },
+    "./component/Protected": {
+      "default": "./protected.ts"
+    },
+    "./component/Notice": {
+      "default": "./notice.ts"
+    },
+    "./component/Page": {
+      "default": "./page.ts"
+    },
+    "./component/Guestbook": {
+      "default": "./guest.ts"
+    },
+    "./component/LocalLog": {
+      "default": "./local.ts"
+    }
+  },
+  "scripts": {
+    "dev": "modern build -w",
+    "build": "modern build",
+    "build:watch": "modern build -w",
+    "test": "vitest run",
+    "reset": "rimraf ./**/node_modules",
+    "new": "modern new",
+    "upgrade": "modern upgrade"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rsbuild/core": "^2.1.9",
+    "@ienlab/tistory-react-component": "^0.4.4",
+    "@ienlab/tistory-react-core": "^0.4.4",
+    "@ienlab/tistory-react-devtool": "^0.4.4",
+    "@ienlab/tistory-react-runtime": "^0.4.4",
+    "@ienlab/tistory-react-shared": "^0.4.4",
+    "cac": "^6.7.14",
+    "chalk": "^5.3.0",
+    "chokidar": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "gitHead": "5955246c00aab7a0e66bc7c7626f8eef2114d96a",
+  "files": [
+    "dist",
+    "bin",
+    "article.ts",
+    "comment.ts",
+    "config.ts",
+    "devtool.ts",
+    "runtime.ts",
+    "sidebar.ts",
+    "tags.ts",
+    "list.ts",
+    "paging.ts",
+    "t3.ts",
+    "cover.ts",
+    "protected.ts",
+    "notice.ts",
+    "page.ts",
+    "guest.ts",
+    "local.ts"
+  ]
 }

@@ -8,3 +8,9 @@ export const DEFAULT_EXTENSIONS = [
   '.cjs',
   '.cts',
 ] as const;
+
+export const DEV_WATCH_IGNORED_GLOBS = [
+  '**/build/**',
+  '**/dist/**',
+  '**/.tistory-react/**',
+] as const;

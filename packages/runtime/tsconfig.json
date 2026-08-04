@@ -4,6 +4,8 @@
     "rootDir": "src",
     "baseUrl": ".",
     "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "esModuleInterop": true
   },

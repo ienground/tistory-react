@@ -1,19 +1,25 @@
 {
-	"name": "tistory-react",
+	"name": "@ienlab/tistory-react",
 	"private": false,
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"examples/*",
+		"docs"
 	],
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
-		"@modern-js/module-tools": "^2.55.0",
-		"@modern-js/tsconfig": "^2.55.0",
-		"@types/node": "^20.14.11",
-		"lerna": "^7.4.2"
+		"@modern-js/module-tools": "^2.71.1",
+		"@modern-js/tsconfig": "^3.7.0",
+		"@types/node": "^26.1.2",
+		"lerna": "^10.0.0"
 	},
 	"scripts": {
+		"build": "lerna run build",
 		"lint": "biome lint . --diagnostic-level=warn",
-    "format": "biome format --write ./packages"
+		"format": "biome format --write ./packages",
+		"publish:all": "bash scripts/publish.sh",
+		"version:sync": "node scripts/sync-version.js"
 	},
-	"packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+	"packageManager": "npm@12.0.2",
+	"version": "0.4.4"
 }

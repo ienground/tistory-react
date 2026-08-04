@@ -1,4 +1,4 @@
-import type { UserConfig } from '@tistory-react/shared';
+import type { UserConfig } from '@ienlab/tistory-react-shared';
 import { RouteService } from './RouteService';
 
 interface InitOptions {
@@ -11,8 +11,8 @@ export let routeService: RouteService | null = null;
 
 // The factory to create route serveice instance
 export async function initRouteService(options: InitOptions) {
-  const { scanDir, config } = options;
-  routeService = new RouteService(scanDir, config);
+  const { scanDir } = options;
+  routeService = new RouteService(scanDir);
   await routeService.init();
   return routeService;
 }

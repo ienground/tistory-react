@@ -1,1 +1,1 @@
-export * from '@tistory-react/runtime';
+export * from '@ienlab/tistory-react-runtime';

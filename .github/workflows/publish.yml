@@ -1,0 +1,36 @@
+name: Publish Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run publish script
+        run: |
+          if [[ "${{ github.ref_name }}" == *-alpha* ]]; then
+            bash scripts/publish.sh alpha
+          elif [[ "${{ github.ref_name }}" == *-beta* ]]; then
+            bash scripts/publish.sh beta
+          else
+            bash scripts/publish.sh latest
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

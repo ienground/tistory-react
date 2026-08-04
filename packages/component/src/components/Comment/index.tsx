@@ -35,6 +35,10 @@ import {
   ```
  */
 export const Comment = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return <s_rp data-is-tistory-tag>{children}</s_rp>;
+  }
   return (
     <s_rp data-is-tistory-tag>
       <div {...props} />

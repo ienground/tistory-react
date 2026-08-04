@@ -2,6 +2,12 @@ export const DEFAULT_ROUTE_PATHS = [
   'main/index.',
   'article/index.',
   'tags/index.',
+  'cover/index.',
+  'protected/index.',
+  'page/index.',
+  'notice/index.',
+  'local/index.',
+  'guest/index.',
   'Layout.',
 ];
 

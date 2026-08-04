@@ -1,1 +1,1 @@
-export * from '@tistory-react/component/Tags';
+export * from '@ienlab/tistory-react-component/Tags';

@@ -1,1 +1,1 @@
-export * from '@tistory-react/component/Article';
+export * from '@ienlab/tistory-react-component/Article';

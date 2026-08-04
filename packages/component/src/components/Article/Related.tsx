@@ -9,7 +9,17 @@ export const Related = ({ children }: PropsWithChildren) => {
 };
 
 Related.parent = 'Article';
-Related.childVariables = [
+
+export const RelatedRep = ({ children }: PropsWithChildren) => {
+  return (
+    <s_article_related_rep data-is-tistory-tag>
+      {children}
+    </s_article_related_rep>
+  );
+};
+
+RelatedRep.parent = 'Related';
+RelatedRep.childVariables = [
   'RELATED_ARTICLE_TYPE',
   'RELATED_ARTICLE_LINK',
   'RELATED_ARTICLE_TITLE',
@@ -20,7 +30,7 @@ export const RelatedLink = (props: RepAnchorProps) => {
   return <a href={RELATED_ARTICLE_LINK} {...props} />;
 };
 
-RelatedLink.parent = 'Related';
+RelatedLink.parent = 'RelatedRep';
 
 /**
  * 글의 type (대표이미지 없음: text_type, 대표이미지 있음: thumb_type)
@@ -53,11 +63,17 @@ export const RelatedThumbnail = ({ children }: PropsWithChildren) => {
   );
 };
 
-RelatedThumbnail.parent = 'Related';
+RelatedThumbnail.parent = 'RelatedRep';
 RelatedThumbnail.childVariables = ['RELATED_THUMBNAIL_LINK'];
 
 export const RelatedThumbnailImg = (props: RepImgProps) => {
-  return <img src={RELATED_THUMBNAIL_LINK} alt="Related Article Thumbnail" />;
+  return (
+    <img
+      src={RELATED_THUMBNAIL_LINK}
+      alt="Related Article Thumbnail"
+      {...props}
+    />
+  );
 };
 
 RelatedThumbnailImg.parent = 'RelatedThumbnail';

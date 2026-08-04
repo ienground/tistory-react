@@ -2,15 +2,15 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 
 # 설치
 
-시스템 요구 사항: `Node.js > 18` 이상
+시스템 요구 사항: `Node.js 20.19` 이상
 
 ## 자동 설치
 
-`create-tistory-react`를 사용하여 새로운 tistory-react 프로젝트를 시작해보세요. 이 명령어를 통해 자동으로 모든 환경을 설정할 수 있습니다.
+`@ienlab/@ienlab/create-tistory-react`를 사용하여 새로운 @ienlab/tistory-react 프로젝트를 시작해보세요. 이 명령어를 통해 자동으로 모든 환경을 설정할 수 있습니다.
 
 <Tabs items={["yarn", "npx"]} defaultIndex="1">
-	<Tabs.Tab>`yarn create tistory-react`</Tabs.Tab>
-	<Tabs.Tab>`npx create-tistory-react`</Tabs.Tab>
+	<Tabs.Tab>`yarn create @ienlab/tistory-react`</Tabs.Tab>
+	<Tabs.Tab>`npx @ienlab/@ienlab/create-tistory-react`</Tabs.Tab>
 </Tabs>
 
 설치시 다음과 같은 프롬포트가 실행됩니다.
@@ -21,6 +21,10 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 ?
 ```
 
+생성된 프로젝트에는 Tailwind CSS v4와 PostCSS 설정이 포함됩니다. `src/index.css`에서 디자인 토큰을 정의하고 컴포넌트의 `className`에서 유틸리티를 바로 사용할 수 있습니다.
+
+Tailwind CSS v4의 최소 브라우저 지원 범위에 맞춰 Chrome 111, Edge 111, Firefox 128, Safari 16.4 이상을 대상으로 빌드합니다.
+
 ## 수동 설치
 
 <Steps>
@@ -28,7 +32,24 @@ import { Tabs, Steps, FileTree } from "nextra/components";
 ### 의존성 설치
 
 ```terminal
-$ yarn add tistory-react@latest react@latest react-dom@latest
+$ yarn add @ienlab/tistory-react@latest react@18.3.1 react-dom@18.3.1
+$ yarn add --dev tailwindcss@latest @tailwindcss/postcss@latest postcss@latest
+```
+
+프로젝트 루트에 `postcss.config.mjs`를 추가하세요.
+
+```javascript
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+```
+
+전역 CSS에서 Tailwind CSS를 불러오고 `Layout.tsx`에서 해당 CSS를 import하세요.
+
+```css
+@import 'tailwindcss';
 ```
 
 ### 스크립트 추가
@@ -38,17 +59,17 @@ $ yarn add tistory-react@latest react@latest react-dom@latest
 ```terminal
 {
   "scripts": {
-    "dev": "tistory-react dev",
-    "build": "tistory-react build"
+    "dev": "@ienlab/tistory-react dev",
+    "build": "@ienlab/tistory-react build"
   }
 }
 ```
 
 이 스크립트는 애플리케이션 개발의 다양한 단계를 나타냅니다.
 
-- `dev`: 개발 모드에서 tistory-react를 시작하기 위해 `tistory-react dev`를 실행합니다.
+- `dev`: 개발 모드에서 @ienlab/tistory-react를 시작하기 위해 `@ienlab/tistory-react dev`를 실행합니다.
 
-- `build`: 스킨 등록을 위해 애플리케이션을 빌드하기 위해 `tistory-react build`를 실행합니다.
+- `build`: 스킨 등록을 위해 애플리케이션을 빌드하기 위해 `@ienlab/tistory-react build`를 실행합니다.
 
 ### 디렉토리 생성
 

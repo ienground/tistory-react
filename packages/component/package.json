@@ -1,11 +1,11 @@
 {
-  "name": "@tistory-react/component",
-  "version": "0.0.13-alpha.0",
+  "name": "@ienlab/tistory-react-component",
+  "version": "0.4.4",
   "description": "The Default Component of Tistory-react Framework, Provide Tistory Components",
-  "bugs": "https://github.com/eunbae0/tistory-react/issues",
+  "bugs": "https://github.com/ienground/tistory-react/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eunbae0/tistory-react",
+    "url": "https://github.com/ienground/tistory-react",
     "directory": "packages/component"
   },
   "license": "MIT",
@@ -30,26 +30,62 @@
       "types": "./dist/Tags/index.d.ts",
       "default": "./dist/Tags/index.js"
     },
-    "./package.json": "./package.json"
+    "./List": {
+      "types": "./dist/List/index.d.ts",
+      "default": "./dist/List/index.js"
+    },
+    "./Paging": {
+      "types": "./dist/Paging/index.d.ts",
+      "default": "./dist/Paging/index.js"
+    },
+    "./package.json": "./package.json",
+    "./T3": {
+      "types": "./dist/T3/index.d.ts",
+      "default": "./dist/T3/index.js"
+    },
+    "./Cover": {
+      "types": "./dist/Cover/index.d.ts",
+      "default": "./dist/Cover/index.js"
+    },
+    "./Protected": {
+      "types": "./dist/Protected/index.d.ts",
+      "default": "./dist/Protected/index.js"
+    },
+    "./Notice": {
+      "types": "./dist/Notice/index.d.ts",
+      "default": "./dist/Notice/index.js"
+    },
+    "./Page": {
+      "types": "./dist/Page/index.d.ts",
+      "default": "./dist/Page/index.js"
+    },
+    "./Guestbook": {
+      "types": "./dist/Guestbook/index.d.ts",
+      "default": "./dist/Guestbook/index.js"
+    },
+    "./LocalLog": {
+      "types": "./dist/LocalLog/index.d.ts",
+      "default": "./dist/LocalLog/index.js"
+    }
   },
   "scripts": {
     "dev": "modern build -w",
     "build": "modern build",
     "reset": "rimraf ./**/node_modules",
-    "test": "echo nothing"
+    "test": "vitest run"
   },
   "engines": {
     "node": ">=14.17.6"
   },
   "dependencies": {
-    "@tistory-react/runtime": "^0.0.10-alpha.0",
-    "@tistory-react/shared": "^0.0.10-alpha.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@ienlab/tistory-react-runtime": "^0.4.4",
+    "@ienlab/tistory-react-shared": "^0.4.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "typescript": "^5.5.3",
     "vitest": "^2.0.5"
   },

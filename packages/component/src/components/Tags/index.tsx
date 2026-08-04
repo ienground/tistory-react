@@ -36,10 +36,13 @@ const Rep = ({ children }: PropsWithChildren) => {
 
 const Anchor = (props: RepAnchorProps) => {
   const { className, ...rest } = props;
+  const tagClassName = className
+    ? `[##_tag_class_##] ${className}`
+    : '[##_tag_class_##]';
   return (
     <a
       href="[##_tag_link_##]"
-      className={`[##_tag_class_##], ${className}`}
+      className={tagClassName}
       {...rest}
     >
       [##_tag_name_##]

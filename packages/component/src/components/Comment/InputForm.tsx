@@ -155,7 +155,7 @@ export const InputPasswordForGuest = (props: RepInputProps) => {
     <input
       type="password"
       name={COMMENT_GUEST_INPUT_PASSWORD}
-      value={COMMENT_GUEST_PASSWORD}
+      value={value ?? COMMENT_GUEST_ADMIN_CHECK}
       {...rest}
     />
   );
@@ -171,6 +171,7 @@ export const COMMENT_GUEST_INPUT_PASSWORD = '[##_rp_input_password_##]';
  * 비밀번호
  */
 export const COMMENT_GUEST_PASSWORD = '[##_rp_password_##]';
+export const COMMENT_GUEST_ADMIN_CHECK = '[##_rp_admin_check_##]';
 
 export const InputHomepageForGuest = (props: RepInputProps) => {
   const { label, value, ...rest } = props;

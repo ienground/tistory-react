@@ -5,4 +5,4 @@ export {
   matchRoutes,
   BrowserRouter,
   useSearchParams,
-} from 'react-router-dom';
+} from 'react-router';

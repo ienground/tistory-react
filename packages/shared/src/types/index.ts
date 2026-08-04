@@ -3,6 +3,7 @@ import type { TistorySkinConfig } from './tistory';
 
 export interface Route {
   pageName: string;
+  component?: React.ComponentType<any>;
   element: React.ReactElement;
   filePath: string;
 }
@@ -23,6 +24,10 @@ export interface UserConfig {
    * The root directory of the site.
    */
   root?: string;
+  /**
+   * Base path of the site.
+   */
+  base?: string;
   /**
    * Path to html icon file.
    */

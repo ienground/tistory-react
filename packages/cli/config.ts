@@ -1,4 +1,4 @@
-import type { UserConfig } from '@tistory-react/core';
+import type { UserConfig } from '@ienlab/tistory-react-core';
 
 export function defineConfig(config: UserConfig): UserConfig {
   return config;

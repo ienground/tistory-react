@@ -1,32 +1,34 @@
 import path from 'node:path';
 import {
-  type UserConfig,
-  removeLeadingSlash,
   TISTORY_REACT_TEMP_DIR,
+  type UserConfig,
+  normalizeSlash,
+  removeLeadingSlash,
   removeTrailingSlash,
-} from '@tistory-react/shared';
-import fs from '@tistory-react/shared/fs-extra';
+} from '@ienlab/tistory-react-shared';
+import fs from '@ienlab/tistory-react-shared/fs-extra';
 import type {
-  RsbuildInstance,
   RsbuildConfig,
+  RsbuildInstance,
   RsbuildPlugin,
 } from '@rsbuild/core';
+import { PLUGIN_REACT_NAME, pluginReact } from '@rsbuild/plugin-react';
 import {
-  CLIENT_ENTRY,
-  SSR_ENTRY,
-  PACKAGE_ROOT,
-  OUTPUT_DIR,
-  isProduction,
-  PUBLIC_DIR,
-  DEFAULT_TITLE,
   BUNDLE_DIR,
+  CLIENT_ENTRY,
+  DEFAULT_TITLE,
+  OUTPUT_DIR,
+  PACKAGE_ROOT,
+  PRODUCTION_CLIENT_ENTRY,
+  PUBLIC_DIR,
+  SSR_ENTRY,
   TISTORY_DEFAULT_CSS_NAME,
+  isProduction,
 } from './constants';
+import type { RouteService } from './route/RouteService';
 import { initRouteService } from './route/init';
 import { rsbuildPluginDocVM } from './runtimeModule';
-import type { RouteService } from './route/RouteService';
 import { detectReactVersion, resolveReactAlias } from './utils';
-import { PLUGIN_REACT_NAME, pluginReact } from '@rsbuild/plugin-react';
 
 export interface MdxRsLoaderCallbackContext {
   resourcePath: string;
@@ -53,9 +55,16 @@ async function createInternalBuildConfig(
   runtimeTempDir: string,
 ): Promise<RsbuildConfig> {
   const cwd = process.cwd();
+  const base = normalizeSlash(config?.base ?? '');
   const baseOutDir = config?.outDir ?? OUTPUT_DIR;
   const csrOutDir = baseOutDir;
   const ssrOutDir = path.join(baseOutDir, 'ssr');
+  const generatedDirectoryGlobs = [
+    '**/build/**',
+    '**/dist/**',
+    '**/.tistory-react/**',
+    `${path.resolve(baseOutDir)}/**`,
+  ];
 
   // const DEFAULT_THEME = require.resolve("@rspress/theme-default");
 
@@ -63,7 +72,7 @@ async function createInternalBuildConfig(
   const assetPrefix = isProduction()
     ? removeTrailingSlash(config?.builderConfig?.output?.assetPrefix ?? '.')
     : '.';
-  const reactVersion = await detectReactVersion();
+  const reactVersion = await detectReactVersion(userDocRoot);
 
   const normalizeIcon = (icon: string | undefined) => {
     if (!icon) {
@@ -79,17 +88,19 @@ async function createInternalBuildConfig(
 
   // Using latest browserslist in development to improve build performance
   const webBrowserslist = isProduction()
-    ? ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14']
+    ? ['chrome >= 111', 'edge >= 111', 'firefox >= 128', 'safari >= 16.4']
     : [
         'last 1 chrome version',
         'last 1 firefox version',
         'last 1 safari version',
       ];
-  const ssrBrowserslist = ['node >= 14'];
+  const ssrBrowserslist = ['node >= 20.19'];
 
   const [reactCSRAlias, reactSSRAlias] = await Promise.all([
-    resolveReactAlias(reactVersion, false),
-    enableSSG ? resolveReactAlias(reactVersion, true) : Promise.resolve({}),
+    resolveReactAlias(reactVersion, false, userDocRoot),
+    enableSSG
+      ? resolveReactAlias(reactVersion, true, userDocRoot)
+      : Promise.resolve({}),
   ]);
 
   return {
@@ -108,7 +119,8 @@ async function createInternalBuildConfig(
           ? Number(process.env.PORT)
           : undefined,
       printUrls: ({ urls }) => {
-        return urls.map(url => `${url}/${removeLeadingSlash(base)}`);
+        const baseUrl = config?.base ?? '';
+        return urls.map(url => `${url}/${removeLeadingSlash(baseUrl)}`);
       },
       publicDir: {
         name: path.join(userDocRoot, PUBLIC_DIR),
@@ -134,17 +146,20 @@ async function createInternalBuildConfig(
       },
       legalComments: 'none',
     },
-    source: {
+    resolve: {
       alias: {
-        '@tistory-react/core': PACKAGE_ROOT,
+        '@ienlab/tistory-react-core': PACKAGE_ROOT,
       },
+    },
+    source: {
       include: [
         PACKAGE_ROOT,
         path.join(cwd, 'node_modules', TISTORY_REACT_TEMP_DIR),
       ],
       define: {
+        'process.env.__BASE__': JSON.stringify(base),
         'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
-        'process.env.__IS_REACT_18__': JSON.stringify(reactVersion === 18),
+        'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
         'process.env.TEST': JSON.stringify(process.env.TEST),
       },
     },
@@ -168,6 +183,17 @@ async function createInternalBuildConfig(
     tools: {
       bundlerChain(chain, { target }) {
         const isServer = target === 'node';
+        const watchOptions = chain.get('watchOptions') ?? {};
+        const ignored = watchOptions.ignored
+          ? Array.isArray(watchOptions.ignored)
+            ? watchOptions.ignored
+            : [watchOptions.ignored]
+          : [];
+
+        chain.watchOptions({
+          ...watchOptions,
+          ignored: [...ignored, ...generatedDirectoryGlobs],
+        });
 
         if (isServer) {
           chain.output.filename('main.cjs');
@@ -176,15 +202,20 @@ async function createInternalBuildConfig(
     },
     environments: {
       web: {
+        resolve: {
+          alias: reactCSRAlias,
+        },
         source: {
           entry: {
-            index: CLIENT_ENTRY,
+            index: isProduction() ? PRODUCTION_CLIENT_ENTRY : CLIENT_ENTRY,
           },
-          alias: reactCSRAlias,
           define: {
             'process.env.__SSR__': JSON.stringify(false),
+            'process.env.__BASE__': JSON.stringify(base),
+            'process.env.__IS_REACT_18__': JSON.stringify(reactVersion >= 18),
+            'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
             'process.env.__ENABLE_VARIABLE_SWAP___': JSON.stringify(
-              config.dev?.enableVariableSwap ?? true,
+              !isProduction() && (config.dev?.enableVariableSwap ?? true),
             ),
           },
         },
@@ -203,13 +234,20 @@ async function createInternalBuildConfig(
       ...(enableSSG
         ? {
             node: {
+              resolve: {
+                alias: reactSSRAlias,
+              },
               source: {
                 entry: {
                   index: SSR_ENTRY,
                 },
-                alias: reactSSRAlias,
                 define: {
                   'process.env.__SSR__': JSON.stringify(true),
+                  'process.env.__BASE__': JSON.stringify(base),
+                  'process.env.__IS_REACT_18__': JSON.stringify(
+                    reactVersion >= 18,
+                  ),
+                  'process.env.__ASSET_PREFIX__': JSON.stringify(assetPrefix),
                 },
               },
               performance: {
@@ -217,6 +255,7 @@ async function createInternalBuildConfig(
               },
               output: {
                 target: 'node',
+                module: false,
                 overrideBrowserslist: ssrBrowserslist,
                 distPath: {
                   root: ssrOutDir,

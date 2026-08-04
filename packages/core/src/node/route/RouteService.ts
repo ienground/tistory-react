@@ -1,9 +1,9 @@
 import path from 'node:path';
-import type { RouteMeta } from '@tistory-react/shared';
-import { normalizePath, isTistoryRouteFile, extractPageName } from '../utils';
+import type { RouteMeta } from '@ienlab/tistory-react-shared';
+import { extractPageName, isTistoryRouteFile, normalizePath } from '../utils';
 
 export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx'];
-export const DEFAULT_PAGE_ROUTE_PATHS = ['main', 'article', 'tags'];
+export const DEFAULT_PAGE_ROUTE_PATHS = ['main', 'article', 'tags', 'cover', 'protected', 'page', 'notice', 'local', 'guest'];
 
 export class RouteService {
   routeData: Map<string, RouteMeta> = new Map();
@@ -21,7 +21,7 @@ export class RouteService {
   }
 
   async init() {
-    const globby = (await import('@tistory-react/shared/globby')).globby;
+    const globby = (await import('@ienlab/tistory-react-shared/globby')).globby;
 
     // 1. Filter page route paths file
     const files = await globby(
@@ -81,6 +81,12 @@ export class RouteService {
     return this.generateRoutesCodeByRouteMeta(this.getRoutes());
   }
 
+  generateStyleImportsCode() {
+    return this.getRoutes()
+      .map(route => `import '${route.absolutePath}';`)
+      .join('\n');
+  }
+
   generateRoutesCodeByRouteMeta(routeMeta: RouteMeta[]) {
     return `
 import React from 'react';
@@ -108,7 +114,7 @@ ${routeMeta
      *   filePath: 'src/Layout.tsx'
      * }
      */
-    return `{ pageName: '${route.pageName}', element: React.createElement(${component}), filePath: '${route.relativePath}' }`;
+    return `{ pageName: '${route.pageName}', component: ${component}, element: React.createElement(${component}), filePath: '${route.relativePath}' }`;
   })
   .join(',\n')}
 ];

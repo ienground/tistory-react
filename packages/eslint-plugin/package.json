@@ -1,6 +1,6 @@
 {
-  "name": "@tistory-react/eslint-plugin-tistory",
-  "version": "0.0.13-alpha.0",
+  "name": "@ienlab/tistory-react-eslint-plugin",
+  "version": "0.4.4",
   "description": "",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "modern build",
     "test": "mocha src/**/*.test.ts",
-    "coverage": "nyc pnpm run test"
+    "coverage": "nyc npm run test"
   },
   "keywords": [
     "eslint",
@@ -30,7 +30,7 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@tistory-react/component": "^0.0.13-alpha.0",
+    "@ienlab/tistory-react-component": "^0.4.4",
     "eslint-plugin-react": "^7.35.2",
     "jsx-ast-utils": "^3.3.5"
   },

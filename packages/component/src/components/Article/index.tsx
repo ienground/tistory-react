@@ -14,6 +14,7 @@ import {
 } from './Admin';
 import {
   Related,
+  RelatedRep,
   RelatedLink,
   RelatedThumbnail,
   RelatedThumbnailImg,
@@ -21,6 +22,7 @@ import {
 import { Tag } from './Tag';
 import { Prev, PrevLink, PrevThumbNail, PrevThumbNailImg } from './Prev';
 import { Next, NextLink, NextThumbNail, NextThumbNailImg } from './Next';
+import { Permalink, Index } from './PermalinkAndIndex';
 
 /** 
  * 글 그룹 치환자 
@@ -44,6 +46,10 @@ import { Next, NextLink, NextThumbNail, NextThumbNailImg } from './Next';
   ```
  */
 export const Article = (props: RepWrapperProps) => {
+  const { children, ...rest } = props;
+  if (Object.keys(rest).length === 0) {
+    return <s_article_rep data-is-tistory-tag>{children}</s_article_rep>;
+  }
   return (
     <s_article_rep data-is-tistory-tag>
       <div {...props} />
@@ -182,6 +188,11 @@ export const ARTICLE_AUTHOR = '[##_article_rep_author_##]';
 export const ARTICLE_DESCRIPTION = '[##_article_rep_desc_##]';
 
 /**
+ * 블로그 본문 요약 내용
+ */
+export const ARTICLE_SUMMARY = '[##_article_rep_summary_##]';
+
+/**
  * 댓글을 열고 닫는 온클릭 이벤트
  */
 export const ARTICLE_REDIRECT_COMMENT_LINK = '[##_article_rep_rp_link_##]';
@@ -209,6 +220,9 @@ Article.Thumbnail = Thumbnail;
 Article.ThumbnailImg = ThumbnailImg;
 Article.CommentCount = CommentCount;
 
+Article.Permalink = Permalink;
+Article.Index = Index;
+
 Article.Admin = Admin;
 Article.AdminModifyLink = AdminModifyLink;
 Article.AdminModifyLinkWithNewWindow = AdminModifyLinkWithNewWindow;
@@ -219,6 +233,7 @@ Article.AdminDeleteLink = AdminDeleteLink;
 Article.Tag = Tag;
 
 Article.Related = Related;
+Article.RelatedRep = RelatedRep;
 Article.RelatedLink = RelatedLink;
 Article.RelatedThumbnail = RelatedThumbnail;
 Article.RelatedThumbnailImg = RelatedThumbnailImg;
@@ -247,11 +262,13 @@ Article.childVariables = [
   'ARTICLE_DATE_SECOND',
   'ARTICLE_DATE_YEAR',
   'ARTICLE_DESCRIPTION',
+  'ARTICLE_SUMMARY',
   'ARTICLE_REDIRECT_COMMENT_LINK',
   'ARTICLE_SIMPLE_DATE',
 ];
 
 export { ADMIN_CURRENT_STATE, ADMIN_NEXT_STATE } from './Admin';
+export { Permalink, Index } from './PermalinkAndIndex';
 export { TAG_LABEL } from './Tag';
 export {
   RELATED_ARTICLE_TYPE,
